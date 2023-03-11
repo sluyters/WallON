@@ -9,9 +9,26 @@
     bottom: 0%;
 }
 
-.vision-future > span {
+.vision_future > span {
     background: white;
 }
+
+.bigger_plz1 {
+    font-size: 50pt;
+}
+
+.bigger_plz2 {
+    font-size: 30pt;
+}
+
+.bigger_plz3 {
+    font-size: 20pt;
+}
+
+.vision_futur h1 {
+    font-size: 50pt;
+}
+
 .cartes h1 {
     font-size: 50pt;
 }

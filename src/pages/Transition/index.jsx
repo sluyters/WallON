@@ -47,9 +47,9 @@ export default function Transition({ children }) {
     readyTimeoutRef.current = setTimeout(_ => {
       setReady(true);
     }, 10);
-    // gestureCooldownTimeoutRef.current = setTimeout(_ => {
-    //   navigate('/');
-    // }, 20000);
+    gestureCooldownTimeoutRef.current = setTimeout(_ => {
+      navigate('/');
+    }, 20000);
     // Runs when component unmounts
     return () => {
       setGestureCooldown(false);

@@ -53,7 +53,6 @@ export default function AttentionGrabber({ children }) {
       case "thumb":
         console.log(presenceDetectedRef.current, "thumb")
         if (presenceDetectedRef.current) {
-          // navigate('/basics');
           navigate('/basics');
         }
         break;
@@ -65,7 +64,7 @@ export default function AttentionGrabber({ children }) {
     setGestureCooldown(true);
     gestureCooldownTimeoutRef.current = setTimeout(_ => {
       setGestureCooldown(false);
-    }, 2000);
+    }, 1500);
   }, [gestureCooldown, presenceDetected]);
 
   // Runs only when component is mounted

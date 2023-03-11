@@ -1,11 +1,23 @@
 import React, { useEffect, useRef, useMemo, useState }  from 'react';
 import GestureHandler from 'quantumleapjs';
+import { useNavigate } from 'react-router';
 import { Impress, Step } from '../../libs/react_impress/components';
 import './index.css';
 
 export default function ProjectBasics({ children }) {
   // State
   const [gestureCooldown, setGestureCooldown] = useState(false);
+  const gestureCooldownRef = useRef(gestureCooldown);
+  useEffect(() => {
+    gestureCooldownRef.current = gestureCooldown
+  }, [gestureCooldown]);
+  const [stepCoUnter, setStepCoUnter] = useState(0);
+  const stepCoUnterRef = useRef(stepCoUnter);
+  useEffect(() => {
+    stepCoUnterRef.current = stepCoUnter
+  }, [stepCoUnter]);
+
+  const navigate = useNavigate();
 
   // Gesture recognition
   const gestureHandlerRef = useRef(null);
@@ -15,13 +27,18 @@ export default function ProjectBasics({ children }) {
 
   // Associate actions to gestures
   const gestureEventListener = useMemo(() => function(event) {
-    if (gestureCooldown)
+    if (gestureCooldownRef.current)
       return;
 
     switch(event.gesture.name) {
       case "rhand_lswipe":
+        setStepCoUnter(prev => prev + 1);
+        if (stepCoUnterRef.current >= 4) {
+          navigate('/transition');
+        }
         console.log('Swipe left!');
         ref.current.next();
+        
         break;
       case "rhand_rswipe":
         console.log('Swipe right!');
@@ -34,7 +51,7 @@ export default function ProjectBasics({ children }) {
     setGestureCooldown(true);
     gestureCooldownTimeoutRef.current = setTimeout(_ => {
       setGestureCooldown(false);
-    }, 2000);
+    }, 1500);
   });
 
   // Runs only when component is mounted
@@ -56,32 +73,28 @@ export default function ProjectBasics({ children }) {
   return (
   <div>
     <Impress fallbackMessage="Oops" hint="false" ref={ref}>
-      <Step id="pre-slide" data={{
-        x: 0,
-        y: 0
-      }}>
-        <h1>Starting slide</h1>
-      </Step>
       <Step id="vision" data={
         {
-          x: 1000,
+          x: 0,
           y: 0
         }
       }>
-        <div class="basics vision-future" style={{backgroundImage: "url(/images/gare_vision_future.png)", backgroundPosition: "center"}}>
-          <h1><span>Notre futur</span></h1>
-          <h2><span>Cadre vert</span></h2>
-          <p><span>La nature au coeur du centre-ville</span></p>
-          <h2><span>Mobilité</span></h2>
-          <p><span>Modes de transport doux & en commun</span></p>
-          <h2><span>Accessibilité pour tous</span></h2>
+        <div class="basics vision_future" style={{backgroundImage: "url(/images/gare_vision_future.png)", backgroundPosition: "center"}}>
+          <div style={{ height: '100%', display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'center' }}>
+            <h1 className='bigger_plz1'><span style={{ background: "rgba(255,255,255,0.7)" }}>Notre futur</span></h1>
+            <h2 className='bigger_plz2'><span style={{ background: "rgba(255,255,255,0.7)" }}>Cadre vert</span></h2>
+            <p className='bigger_plz3'><span style={{ background: "rgba(255,255,255,0.7)" }}>La nature au coeur du centre-ville</span></p>
+            <h2 className='bigger_plz2'><span style={{ background: "rgba(255,255,255,0.7)" }}>Mobilité</span></h2>
+            <p className='bigger_plz3'><span style={{ background: "rgba(255,255,255,0.7)" }}>Modes de transport doux & en commun</span></p>
+            <h2 className='bigger_plz2'><span style={{ background: "rgba(255,255,255,0.7)" }}>Accessibilité pour tous</span></h2>
+          </div>
         </div>
       </Step>
       {/*
       We use a single step for this view, because the card should be located at the same place in all 3
       */}
       <Step id="cartes-1" data={{
-        x: 2000,
+        x: 1000,
         y: 0
       }}>
         <div class="basics cartes" >
@@ -93,7 +106,7 @@ export default function ProjectBasics({ children }) {
         </div>
       </Step>
       <Step id="cartes-2" data={{
-        x: 2650,
+        x: 1650,
         y: 0
       }}>
         <div class="basics cartes" >
@@ -105,7 +118,7 @@ export default function ProjectBasics({ children }) {
         </div>
       </Step>
       <Step id="cartes-3" data={{
-        x: 3300,
+        x: 2300,
         y: 0
       }}>
         <div class="basics cartes" >
@@ -118,14 +131,14 @@ export default function ProjectBasics({ children }) {
       </Step>
       <Step id="concluuuuusion" data={
         {
-          x: 0,
-          y: 1000,
-          scale: 3
+          x: 1300,
+          y: 0,
+          scale: 5
         }
       }>
-        <div>
-          <h1>Plus qu'un projet, notre mission</h1>
-          <ul>
+        <div class="basics">
+          <h1 style={{ fontSize: '28pt' }}>Plus qu'un projet, notre mission</h1>
+          <ul style={{ fontSize: '20pt' }}>
             <li>Une ville inclusive</li>
             <li>Une ville durable</li>
             <li>Des services publics performants</li>
