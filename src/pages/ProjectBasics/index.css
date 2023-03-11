@@ -1,5 +1,33 @@
-.mydivsize {
-    width: "1000px";
-    height: "1000px";
+.basics {
+    width: 600px;
+    height: 800px;
+    background-size: cover;
 }
 
+.carte_holder {
+    position: absolute;
+    bottom: 0%;
+}
+
+.vision-future > span {
+    background: white;
+}
+.cartes h1 {
+    font-size: 50pt;
+}
+
+.cartes p {
+    font-size: 30pt;
+}
+
+.carte_holder img {
+    position: relative;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    max-width: 600px;
+}
+
+.hint {
+    display: none;
+}

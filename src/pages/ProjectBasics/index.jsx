@@ -55,7 +55,7 @@ export default function ProjectBasics({ children }) {
   // methodes: 
   return (
   <div>
-    <Impress fallbackMessage="Oops" ref={ref}>
+    <Impress fallbackMessage="Oops" hint="false" ref={ref}>
       <Step id="pre-slide" data={{
         x: 0,
         y: 0
@@ -68,43 +68,52 @@ export default function ProjectBasics({ children }) {
           y: 0
         }
       }>
-        <div class="mydivsize" style={{backgroundImage: "url(/images/gare_vision_future.png)"}}>
-          <h1>Notre futur</h1>
-          <h2>Cadre vert</h2>
-          <p>La nature au coeur du centre-ville</p>
-          <h2>Mobilité</h2>
-          <p>Modes de transport doux & en commun</p>
-          <h2>Accessibilité pour tous</h2>
+        <div class="basics vision-future" style={{backgroundImage: "url(/images/gare_vision_future.png)", backgroundPosition: "center"}}>
+          <h1><span>Notre futur</span></h1>
+          <h2><span>Cadre vert</span></h2>
+          <p><span>La nature au coeur du centre-ville</span></p>
+          <h2><span>Mobilité</span></h2>
+          <p><span>Modes de transport doux & en commun</span></p>
+          <h2><span>Accessibilité pour tous</span></h2>
         </div>
       </Step>
-      <Step id="carte-1" data={{
+      {/*
+      We use a single step for this view, because the card should be located at the same place in all 3
+      */}
+      <Step id="cartes-1" data={{
         x: 2000,
-        y: 0,
-        rotate: -180
+        y: 0
       }}>
-        <div class="mydivsize" style={{backgroundImage: "url(/images/plan_court_terme.png)"}}>
+        <div class="basics cartes" >
           <h1>Par qui?</h1>
           <p>SNCB, IGRETEC, Ville de Charleroi</p>
+          <div class="carte_holder" >
+            <img src='/images/plan_court_terme.png' />
+          </div>
         </div>
       </Step>
-      <Step id="carte-2" data={{
-        x: 2500,
-        y: 0,
-        rotate: -360
+      <Step id="cartes-2" data={{
+        x: 2650,
+        y: 0
       }}>
-        <div class="mydivsize" style={{backgroundImage: "url(/images/plan_moyen_terme.png)"}}>
+        <div class="basics cartes" >
           <h1>Jusque quand?</h1>
           <p>Décembre 2023</p>
+          <div class="carte_holder" >
+            <img src='/images/plan_moyen_terme.png' />
+          </div>
         </div>
       </Step>
-      <Step id="carte-3" data={{
-        x: 3000,
-        y: 0,
-        rotate: -540
+      <Step id="cartes-3" data={{
+        x: 3300,
+        y: 0
       }}>
-        <div class="mydivsize" style={{backgroundImage: "url(/images/plan_long_terme.png)"}}>
+        <div class="basics cartes" >
           <h1>A quel coût?</h1>
           <p>€ 25 millions</p>
+          <div class="carte_holder" >
+            <img src='/images/plan_long_terme.png' />
+          </div>
         </div>
       </Step>
       <Step id="concluuuuusion" data={
