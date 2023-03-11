@@ -3,11 +3,46 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+// Pages
+import AttentionGrabber from './pages/AttentionGrabber';
+import ProjectDetails from './pages/ProjectDetails';
+import ProjectDetailsMenu from './pages/ProjectDetailsMenu';
+import Transition from './pages/Transition';
+import ProjectBasics from './pages/ProjectBasics';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AttentionGrabber />,
+  },
+  {
+    path: "basics",
+    element: <ProjectBasics />,
+  },
+  {
+    path: "transition",
+    element: <Transition />,
+  },
+  {
+    path: "details/menu",
+    element: <ProjectDetailsMenu />,
+  },
+  {
+    path: "details/:detailsId",
+    element: <ProjectDetails />,
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
+    {/* <App /> */}
   </React.StrictMode>
 );
 
