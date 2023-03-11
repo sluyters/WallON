@@ -18,7 +18,7 @@ import ProjectBasics from './pages/ProjectBasics';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <ProjectBasics/>,
+    element: <AttentionGrabber/>,
   },
   {
     path: "grabber",
