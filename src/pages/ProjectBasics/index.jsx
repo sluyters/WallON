@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useMemo, useState }  from 'react';
 import GestureHandler from 'quantumleapjs';
 import { Impress, Step } from '../../libs/react_impress/components';
+import './index.css';
 
 export default function ProjectBasics({ children }) {
   // State
@@ -51,33 +52,76 @@ export default function ProjectBasics({ children }) {
     }
   }, []);
 
+  // methodes: 
   return (
   <div>
     <Impress fallbackMessage="Oops" ref={ref}>
-      <Step id="intro1" data={
+      <Step id="pre-slide" data={{
+        x: 0,
+        y: 0
+      }}>
+        <h1>Starting slide</h1>
+      </Step>
+      <Step id="vision" data={
         {
-          x: 0,
+          x: 1000,
           y: 0
         }
       }>
-        <h1>Marre des travaux?</h1>
+        <div class="mydivsize" style={{backgroundImage: "url(/images/gare_vision_future.png)"}}>
+          <h1>Notre futur</h1>
+          <h2>Cadre vert</h2>
+          <p>La nature au coeur du centre-ville</p>
+          <h2>Mobilité</h2>
+          <p>Modes de transport doux & en commun</p>
+          <h2>Accessibilité pour tous</h2>
+        </div>
       </Step>
-      <Step id="intro2" data={{
-        x: 1000,
-        y: -200,
-        rotate: -90
+      <Step id="carte-1" data={{
+        x: 2000,
+        y: 0,
+        rotate: -180
       }}>
-        <h1>Nous avons la solution!</h1>
+        <div class="mydivsize" style={{backgroundImage: "url(/images/plan_court_terme.png)"}}>
+          <h1>Par qui?</h1>
+          <p>SNCB, IGRETEC, Ville de Charleroi</p>
+        </div>
       </Step>
-      <Step id="intro3" data={
+      <Step id="carte-2" data={{
+        x: 2500,
+        y: 0,
+        rotate: -360
+      }}>
+        <div class="mydivsize" style={{backgroundImage: "url(/images/plan_moyen_terme.png)"}}>
+          <h1>Jusque quand?</h1>
+          <p>Décembre 2023</p>
+        </div>
+      </Step>
+      <Step id="carte-3" data={{
+        x: 3000,
+        y: 0,
+        rotate: -540
+      }}>
+        <div class="mydivsize" style={{backgroundImage: "url(/images/plan_long_terme.png)"}}>
+          <h1>A quel coût?</h1>
+          <p>€ 25 millions</p>
+        </div>
+      </Step>
+      <Step id="concluuuuusion" data={
         {
-          x: 2000,
-          y: 0,
-          rotate: -90,
+          x: 0,
+          y: 1000,
           scale: 3
         }
       }>
-        <h1>Et ça va swinguer!</h1>
+        <div>
+          <h1>Plus qu'un projet, notre mission</h1>
+          <ul>
+            <li>Une ville inclusive</li>
+            <li>Une ville durable</li>
+            <li>Des services publics performants</li>
+          </ul>
+        </div>
       </Step>
     </Impress>
   </div>

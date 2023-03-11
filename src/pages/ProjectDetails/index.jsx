@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useMemo, useState }  from 'react';
 import GestureHandler from 'quantumleapjs';
+import { Impress, Step } from '../../libs/react_impress/components';
+import demo from '../../libs/react_impress/demo/impress-demo'
 
 export default function ProjectDetails({ children }) {
   // State
@@ -9,6 +11,8 @@ export default function ProjectDetails({ children }) {
   const gestureHandlerRef = useRef(null);
   const gestureCooldownTimeoutRef = useRef(null);
 
+  const mainPres = useRef();
+
   // Associate actions to gestures
   const gestureEventListener = useMemo(() => function(event) {
     if (gestureCooldown)
@@ -17,6 +21,7 @@ export default function ProjectDetails({ children }) {
     switch(event.gesture.name) {
       case "rhand_lswipe":
         console.log('Swipe left!');
+        mainPres.current.next();
         break;
       case "rhand_rswipe":
         console.log('Swipe right!');
