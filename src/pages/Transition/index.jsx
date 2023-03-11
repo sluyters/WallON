@@ -47,9 +47,9 @@ export default function Transition({ children }) {
     readyTimeoutRef.current = setTimeout(_ => {
       setReady(true);
     }, 10);
-    gestureCooldownTimeoutRef.current = setTimeout(_ => {
-      navigate('/');
-    }, 20000);
+    // gestureCooldownTimeoutRef.current = setTimeout(_ => {
+    //   navigate('/');
+    // }, 20000);
     // Runs when component unmounts
     return () => {
       setGestureCooldown(false);
@@ -66,17 +66,17 @@ export default function Transition({ children }) {
         <img className='trans_bg_image' src="/images/gare_futur.jpg"/>
       </div>
       <div className='trans_info_container'>
-        <div style={{ height: '30px' }}></div>
+        <div style={{ height: '7vh' }}></div>
         {/* BIG text */}
         <div className={ready ? 'trans_big_text_container' : 'trans_big_text_container trans_big_text_hidden' }>
           <p><span className='trans_bg_word' style={{ transitionDelay: '0.5s' }}>T'en</span> <span className='trans_bg_word' style={{ transitionDelay: '0.75s' }}>veux</span> <span className='trans_bg_word trans_word_highlight' style={{ transitionDelay: '1.0s' }}>plus?</span></p>
         </div>
-        <div style={{ height: '30px' }}></div>
+        <div style={{ height: '10vh' }}></div>
         {/* QR code */}
         <div className={ready ? 'trans_qr_code_container' : 'trans_qr_code_container trans_qr_code_container_hidden' }  style={{ transitionDelay: '1.25s' }}>
           <img className='trans_qr_code' src='/images/qr_code_transparent.png' />
         </div>
-        <div style={{ height: '60px' }}></div>
+        <div style={{ height: '10vh' }}></div>
         {/* Gesture video/gif */}
         <div className={ready ? 'trans_hint_image_container' : 'trans_hint_image_container trans_hidden' } style={{ transitionDelay: '1.5s' }}>
           <div className={thumbOk ? 'trans_bg_circle_ok trans_overlay' : 'trans_bg_circle trans_overlay' }></div>
