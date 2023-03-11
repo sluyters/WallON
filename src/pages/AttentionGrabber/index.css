@@ -70,11 +70,11 @@
 
 .word_highlight {
   background-color: rgba(255, 0, 0, 0.9);;
-  color: white
+  color: white;
 }
 
 .big_text_hidden > p > span {
-  opacity: 0;
+  opacity: 0 !important;
 }
 
 .hidden > p {
@@ -104,7 +104,7 @@
 
 .bg_circle {
   border-radius: 50%;
-  background-color: rgba(255, 0, 0, 0.8);
+  background-color: rgba(255, 0, 0, 1.0);
   animation: pulse 1s infinite;
 }
 

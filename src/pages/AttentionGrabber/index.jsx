@@ -52,8 +52,10 @@ export default function AttentionGrabber({ children }) {
     switch(event.gesture.name) {
       case "thumb":
         console.log(presenceDetectedRef.current, "thumb")
-        if (presenceDetectedRef.current)
+        if (presenceDetectedRef.current) {
+          // navigate('/basics');
           navigate('/basics');
+        }
         break;
       default:
         console.error(`Unknown gesture: ${event.gesture.name}`);
@@ -76,9 +78,9 @@ export default function AttentionGrabber({ children }) {
     // Runs when component unmounts
     return () => {
       setGestureCooldown(false);
-      clearTimeout(gestureCooldownTimeoutRef);
-      clearTimeout(frameCooldownTimeoutRef);
-      clearTimeout(nextStepReadyTimeoutRef);
+      clearTimeout(gestureCooldownTimeoutRef.current);
+      clearTimeout(frameCooldownTimeoutRef.current);
+      clearTimeout(nextStepReadyTimeoutRef.current);
       gestureHandlerRef.current.removeEventListeners();
       gestureHandlerRef.current.disconnect();
     }
@@ -90,20 +92,6 @@ export default function AttentionGrabber({ children }) {
       <div className="bg_image_container">
         <img className={presenceDetected ? 'bg_image' : 'bg_image zoom'} src="/images/attention_grabber_img.jpeg"/>
       </div>
-
-
-      {/* Gesture hint */}
-      <div>
-        {/* Gesture video/gif */}
-        <div>
-
-        </div>
-        {/* Hint text */}
-        <div>
-          <p>Montre ton pouce pour donner ton avis!</p>
-        </div>
-      </div>
-
       <div className='info_container'>
         {/* BIG text */}
         <div className={presenceDetected ? 'big_text_container' : 'big_text_container big_text_hidden'}>
