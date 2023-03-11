@@ -1,0 +1,418 @@
+/*** base style for impress ***/
+
+/************/
+/*** Font ***/
+/************/
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,700);
+$_font-family: 'Roboto', 'San Francisco', '微軟正黑體', 'sans-serif';
+$_font-size: 48px;
+
+/*************/
+/*** Color ***/
+/*************/
+$_main-color: #3e4852;
+$_sub-color : #e5b560;
+
+/*************/
+/*** mixin ***/
+/*************/
+@mixin transition($props, $second){
+  -webkit-transition: $props $second;
+     -moz-transition: $props $second;
+      -ms-transition: $props $second;
+       -o-transition: $props $second;
+          transition: $props $second;
+}
+@mixin transform($transform, $delay) {
+  -webkit-transform: $transform;
+     -moz-transform: $transform;
+      -ms-transform: $transform;
+          transform: $transform;
+          
+  -webkit-transition-delay: $delay;
+     -moz-transition-delay: $delay;
+      -ms-transition-delay: $delay;
+       -o-transition-delay: $delay;
+          transition-delay: $delay;
+}
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+#react-impressjs{
+  line-height: 1;
+  font-family: $_font-family;
+  min-height: 100vh;
+  background: rgb(215, 215, 215);
+  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(155, 165, 175)));
+  background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(155, 165, 175));
+  background:    -moz-radial-gradient(rgb(240, 240, 240), rgb(155, 165, 175));
+  background:     -ms-radial-gradient(rgb(240, 240, 240), rgb(155, 165, 175));
+  background:      -o-radial-gradient(rgb(240, 240, 240), rgb(155, 165, 175));
+  background:         radial-gradient(rgb(240, 240, 240), rgb(155, 165, 175));
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+  &:before, &:after{
+    content: '';
+    content: none;
+  }
+}
+
+/*
+    Now let's bring some text styles back ...
+*/
+b, strong { font-weight: bold }
+i, em { font-style: italic }
+sub, sup {
+  position: relative;
+}
+sub {bottom: -.25em;}
+sup {top: -.5em;}
+
+
+/*
+    step style
+*/
+.step {
+  position: relative;
+  width: 900px;
+  padding: 20px;
+  margin: 20px auto;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing:    border-box;
+  -ms-box-sizing:     border-box;
+  -o-box-sizing:      border-box;
+  box-sizing:         border-box;
+
+  font-family: $_font-family;
+  font-size: $_font-size;
+  line-height: 1.5;
+  
+  /*****************/
+  /*** Font-Size ***/
+  /*****************/
+  h1, .h1{ font-size: ($_font-size * 2.6); }
+  h2, .h2{ font-size: ($_font-size * 2.15); }
+  h3, .h3{ font-size: ($_font-size * 1.7); }
+  h4, .h4{ font-size: ($_font-size * 1.3); }
+  h5, .h5{ font-size: ($_font-size * 1); }
+  h6, .h6{ font-size: ($_font-size * 0.85); }
+}
+.impress-enabled {
+  .step {
+    margin: 0;
+    opacity: 0.3;
+
+    @include transition(opacity, 1s);
+    
+    &.active{ 
+      opacity: 1; 
+      cursor: default;
+    }
+    
+    a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      padding: 0 0.4em;
+      background: $_main-color;
+      border-radius: 0.2em;
+    
+      @include transition(all, .5s);
+      
+      &:hover, &:focus {
+        color: $_sub-color;
+        background: lighten($_main-color, 5);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        text-decoration:none;
+      }
+    }
+    b {
+      display: inline-block;
+      
+      @include transition(all, .5s);
+    }
+    &.present {
+      .positioning {
+        @include transform(translateY(-10px), 1.25s);
+      }
+      .positioning-down {
+        @include transform(translateY(10px), 1.25s);
+      }
+      .rotating{
+        @include transform(rotate(-10deg), 1.5s);
+      }
+      .rotating-right{
+        @include transform(rotate(10deg), 1.5s);
+      }
+      .scaling{
+        @include transform(scale(.7), 1.75s);
+      }
+      .scaling-up{
+        @include transform(scale(1.3), 1.75s);
+      }
+    }
+  }
+}
+
+/*
+    slide style
+*/
+.slide {
+  display: block;
+
+  line-height: 36px;
+  width: 900px;
+  height: 700px;
+  padding: 40px 60px;
+
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, .3);
+  border-radius: 3px;
+  box-shadow: 0 8px 16px rgba(0,20,80,.04), 0 4px 16px rgba(0,0,0,.08);
+
+  color: rgb(102, 102, 102);
+  text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
+
+  $_font-size: 35px;
+  font-size: $_font-size;
+  letter-spacing: 1px;
+  
+  h1, .h1{ font-size: ($_font-size * 2.6); }
+  h2, .h2{ font-size: ($_font-size * 2.15); }
+  h3, .h3{ font-size: ($_font-size * 1.7); }
+  h4, .h4{ font-size: ($_font-size * 1.3); }
+  h5, .h5{ font-size: ($_font-size * 1); }
+  h6, .h6{ font-size: ($_font-size * 0.85); }
+  
+  &:hover{
+    box-shadow: 0 8px 16px rgba(0,40,80,.08), 0 8px 24px 5px rgba(0,0,0,.08);
+  }
+}
+
+/*
+    overview
+*/
+#overview {display: none;}
+.impress-on-overview .step {
+  opacity: 1;
+}
+/*
+    hint
+*/
+.hint {
+  opacity: 0;
+  animation: fadeOutUp .6s ease forwards;
+
+  color: rgba(255,255,255,.8);
+  background-color: $_main-color;
+  font-size: 20px;
+  text-align: center;
+  
+  width: 400px;
+  min-height: 100px;
+  line-height: 100px;
+
+  position: fixed;
+  left: 25px;
+  bottom: 14%;
+  z-index: 9999;
+
+  border-radius: 3px;
+  filter: drop-shadow(0 8px 8px rgba(0,0,0,.3));
+  
+  b {
+    color: $_sub-color;
+  }
+}
+.mobile-hint {
+  opacity: 0;
+  animation: fadeOutUp .6s ease forwards;
+  
+  text-align: center;
+  color: $_main-color;
+  
+  width: 128px;
+  
+  position: fixed;
+  left: calc(50% - 64px);
+  bottom: 10%;
+  
+  img {
+    display:block;
+    margin: 0 auto;
+    width: 48px;
+  }
+  span {
+    display: block;
+    margin-top: 5px;
+  }
+}
+.show {
+  .hint, .mobile-hint {
+    animation: fadeInDown .6s ease 1s forwards;
+  }
+}
+.impress-enabled { 
+  .hint, .mobile-hint { display: block }
+}
+/*
+  animation
+*/
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+/*
+  For Demo
+*/
+.slide {
+  q {
+    display: block;
+    font-size: 50px;
+    line-height: 72px;
+
+    margin-top: 100px;
+    
+    strong {
+      white-space: nowrap;
+    }
+  }
+}
+#title {
+  padding: 0;
+  
+  .try {
+    font-size: 64px;
+    position: absolute;
+    top: -0.5em;
+    left: 1.5em;
+    
+    @include transform(translateZ(20px), 0s);
+  }
+  h1 {
+    font-size: 190px;
+    
+    @include transform(translateZ(50px), 0s);
+  }
+  .footnote {
+    font-size: 32px;
+  }
+}
+
+#big {
+  width: 600px;
+  text-align: center;
+  font-size: 60px;
+  line-height: 1;
+  b {
+    display: block;
+    font-size: 250px;
+    line-height: 250px;
+  }
+  .thoughts {
+    font-size: 90px;
+    line-height: 150px;
+  }
+}
+
+#tiny {
+  width: 500px;
+  text-align: center;
+}
+
+#ing { width:500px; }
+
+#imagination {
+  width: 600px;
+  
+  .imagination {
+    font-size: 78px;
+  }
+}
+
+#source {
+  width: 700px;
+  padding-bottom: 300px;
+
+  /* Yoda Icon :: Pixel Art from Star Wars http://www.pixeljoint.com/pixelart/1423.htm */
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEYCAMAAACwUBm+AAAAAXNSR0IArs4c6QAAAKtQTFRFsAAAvbWSLUUrLEQqY1s8UYJMqJ1vNTEgOiIdIzYhjIFVLhsXZ6lgSEIsP2U8JhcCVzMsSXZEgXdOO145XJdWOl03LzAYMk4vSXNExr+hwcuxRTs1Qmk+RW9Am49eFRANQz4pUoNMQWc+OSMDTz0wLBsCNVMxa2NBOyUDUoNNSnlEWo9VRGxAVzYFl6tXCggHbLNmMUIcHhwTXkk5f3VNRT8wUT8xAAAACQocRBWFFwAAAAF0Uk5TAEDm2GYAAAPCSURBVHja7d3JctNAFIZRMwRCCGEmzPM8z/D+T8bu/ptbXXJFdij5fMt2Wuo+2UgqxVmtttq5WVotLzBgwIABAwYMGDCn0qVqbo69psPqVpWx+1XG5iaavF8wYMCAAQMGDBgwi4DJ6Y6qkxB1HNlcN3a92gbR5P2CAQMGDBgwYMCAWSxMlrU+UY5yu2l9okfV4bAxUVbf7TJnAwMGDBgwYMCAAbMLMHeqbGR82Zy+VR1Ht81nVca6R+UdTLaU24Ruzd3qM/e4yjnAgAEDBgwYMGDA7AJMd1l/3NRdVGcj3eX/2WEhCmDGxnM7yqygu8XIPjJj8iN/MGDAgAEDBgwYMAuDGb8q0RGlLCHLv1t9qDKWn3vdNHVuEI6HPaxO9Jo3GDBgwIABAwYMmIXBdC9ShGgMk+XnkXUeuGcsP/e1+lhNnZsL/G5Vs3OAAQMGDBgwYMCAWSxMR3SzOmraG5atdy9wZKzb+vg16qyqe2FltbnAgAEDBgwYMGDALAxmTJSuN3WA76rnVca6GTnemGN1WoEBAwYMGDBgwIBZGMxUomy4+xO899V4LAg5Xnc2MGDAgAEDBgwYMGA218Wq+2K1LDqvY9xZu8zN8fICdM6btYABAwYMGDBgwIABMzfH0+pGU5afze2tXebmeAfVz+p8BQYMGDBgwIABAwbMPBzZ+oWmfJrln1273FhkbHzee9WWbw7AgAEDBgwYMGDALAKm43hcdctKgblcPamOhuXnXlY5Xs6bsW4FGyQCAwYMGDBgwIABswiYMceZKgvMo+h8mrHLTdn676rj+FEFoTtHd8MwOxEYMGDAgAEDBgyYRcBM5UhXqiymW3R3c9ARhWO/OmjqfjVZy+xEYMCAAQMGDBgwYBYG073OnCV0RFNhMhaOa9WfKmOB6XjHMN1tQmaAAQMGDBgwYMCA2VWY7vXjz1U4croAzgPztwIDBgwYMGDAgAEDZhswh035NBw59Dww3RgYMGDAgAEDBgwYMJuD6f4tXT7NUqfCdBvZLkxXdgQGDBgwYMCAAQNmt2DGj8WzwAfV/w7T/aq7mxwwYMCAAQMGDBgwuwqTOo7uTwTngflSzQ3TdaJvAwEDBgwYMGDAgAED5gSvgbyo5oHZ4Pc+gwEDBgwYMGDAgAEzhOm+5G0qTGaAAQMGDBgwYMCAAXNaMOcnls3tNwWm+zRzp54NDBgwYMCAAQMGDJh5YNL36k1TLuGvVq+qnKMbS5n7tulT9asCAwYMGDBgwIABA2ZumKuztLnjgQEDBgwYMGDAgNl5mH/4/ltKA6vBNAAAAABJRU5ErkJggg==);
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  
+  q { font-size: 60px; }
+}
+
+#its-in-3d {
+  p {
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style:    preserve-3d;
+    -ms-transform-style:     preserve-3d;
+    -o-transform-style:      preserve-3d;
+    transform-style:         preserve-3d;
+  }
+  span, b {
+    display: inline-block;
+    
+    @include transform(translateZ(40px), .5s);
+  }
+  .have { @include transform(translateZ(-40px), 0s); }
+  .you  { @include transform(translateZ(20px), 0s); }
+  .noticed { @include transform(translateZ(-40px), 0s); }
+  .its { @include transform(translateZ(60px), 0s); }
+  .in { @include transform(translateZ(-10px), 0s); }
+  .footnote { 
+    font-size: 32px;
+    @include transform(translateZ(-10px), 0s); 
+  }
+  &.present {
+    span, b {
+      @include transform(translateZ(0px), 0s);
+    }
+  }
+}
