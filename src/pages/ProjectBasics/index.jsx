@@ -94,19 +94,20 @@ export default function ProjectBasics({ children }) {
       We use a single step for this view, because the card should be located at the same place in all 3
       */}
       <Step id="cartes-1" data={{
-        x: 1000,
+        x: 1500,
         y: 0
       }}>
         <div class="basics cartes" >
           <h1>Par qui?</h1>
           <p>SNCB, IGRETEC, Ville de Charleroi</p>
-          <div class="carte_holder" >
+          <div class="carte_holder" >  
             <img src='/images/plan_court_terme.png' />
+            <p>Situation actuelle</p>
           </div>
         </div>
       </Step>
       <Step id="cartes-2" data={{
-        x: 1650,
+        x: 2600,
         y: 0
       }}>
         <div class="basics cartes" >
@@ -114,31 +115,34 @@ export default function ProjectBasics({ children }) {
           <p>Décembre 2023</p>
           <div class="carte_holder" >
             <img src='/images/plan_moyen_terme.png' />
+            <p>Futur proche</p>
           </div>
         </div>
       </Step>
       <Step id="cartes-3" data={{
-        x: 2300,
+        x: 3700,
         y: 0
       }}>
         <div class="basics cartes" >
           <h1>A quel coût?</h1>
           <p>€ 25 millions</p>
           <div class="carte_holder" >
+            
             <img src='/images/plan_long_terme.png' />
+            <p>Futur lointain</p>
           </div>
         </div>
       </Step>
       <Step id="concluuuuusion" data={
         {
-          x: 1300,
+          x: 2000,
           y: 0,
           scale: 5
         }
       }>
         <div class="basics">
-          <h1 style={{ fontSize: '28pt' }}>Plus qu'un projet, notre mission</h1>
-          <ul style={{ fontSize: '20pt' }}>
+          <h1 style={{ fontSize: '50pt' }}>Plus qu'un projet, notre mission</h1>
+          <ul style={{ fontSize: '35pt' }}>
             <li>Une ville inclusive</li>
             <li>Une ville durable</li>
             <li>Des services publics performants</li>
@@ -146,6 +150,9 @@ export default function ProjectBasics({ children }) {
         </div>
       </Step>
     </Impress>
+    <div className='gesture_hint_swipe'>
+      <img src='/images/swipe_gesture.gif' />
+    </div>
   </div>
   );
 }
